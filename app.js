@@ -1,5 +1,7 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 const path = require('path');
-require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -9,11 +11,17 @@ const csrf = require('csurf');
 const flash = require('connect-flash');
 const multer = require('multer');
 const { v4: uuidv4 } = require('uuid');
+const helmet = require('helmet');
+const compression = require('compression');
 
 const errorController = require('./controllers/error');
 const User = require('./models/user');
 
 const app = express();
+app.use(helmet());
+app.use(compression());
+
+const port = process.env.PORT || 3000;
 const store = new MongoDBStore({
   uri: process.env.MONGODB_URI,
   collection: 'sessions'
@@ -113,7 +121,7 @@ mongoose
     useUnifiedTopology: true
   })
   .then(result => {
-    app.listen(process.env.PORT || 3000);
+    app.listen(port);
   })
   .catch(err => {
     console.log(err);
