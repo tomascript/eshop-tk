@@ -59,7 +59,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(
   multer({
     storage: fileStorage,
-    fileFilter: fileFilter
+    fileFilter: fileFilter,
+    limits: {
+      fileSize: 1000000
+    }
   }).single('imageUrl')
 );
 app.use(express.static(path.join(__dirname, 'public')));

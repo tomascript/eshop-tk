@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const fileHelper = require('../util/file');
+// const fileHelper = require('../util/file');
 
 const { validationResult } = require('express-validator');
 
@@ -196,7 +196,7 @@ exports.postDeleteProduct = (req, res, next) => {
       if (!product) {
         return next(new Error('Product not found.'));
       }
-      fileHelper.deleteFile(product.imageUrl);
+      // fileHelper.deleteFile(product.imageUrl);
       return Product.deleteOne({ _id: prodId, userId: req.user._id });
     })
     .then(() => {
