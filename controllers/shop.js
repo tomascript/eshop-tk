@@ -40,6 +40,20 @@ exports.getProducts = (req, res, next) => {
     });
 };
 
+exports.getImage = (req, res, next) => {
+  const productId = req.params.productId;
+  Product.findById(productId)
+    .then(product => {
+      res.setHeader('Content-Type', 'image/jpg');
+      res.send(product.imageUrl);
+    })
+    .catch(err => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
+};
+
 exports.getProduct = (req, res, next) => {
   const prodId = req.params.productId;
   Product.findById(prodId)
@@ -115,7 +129,6 @@ exports.postCart = (req, res, next) => {
       return req.user.addToCart(product);
     })
     .then(result => {
-      console.log(result);
       res.redirect('/cart');
     })
     .catch(err => {
