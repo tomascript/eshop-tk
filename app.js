@@ -1,6 +1,5 @@
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
-}
+require('dotenv').config();
+
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -66,7 +65,7 @@ app.use(
   }).single('imageUrl')
 );
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/images', express.static(path.join(__dirname, 'images')));
+// app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -85,7 +84,6 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  // throw new Error('Sync Dummy');
   if (!req.session.user) {
     return next();
   }
