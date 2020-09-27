@@ -4,7 +4,7 @@
   "description": "e-shop with server side rendering and sessions, payments not included",
   "main": "app.js",
   "engines": {
-    "node": "^12.18.0"
+    "node": "12.18.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -23,6 +23,7 @@
     "connect-flash": "^0.1.1",
     "connect-mongodb-session": "^2.4.1",
     "csurf": "^1.11.0",
+    "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
@@ -37,7 +38,6 @@
     "uuid": "^8.3.0"
   },
   "devDependencies": {
-    "dotenv": "^8.2.0",
     "nodemon": "^2.0.4"
   }
 }
