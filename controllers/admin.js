@@ -125,7 +125,8 @@ exports.postEditProduct = (req, res, next) => {
   const prodId = req.body.productId;
   const updatedTitle = req.body.title;
   const updatedPrice = req.body.price;
-  const imageUrl = req.file.buffer;
+  const image = req.file;
+  const updatedImageUrl = req.file.buffer;
   const updatedDesc = req.body.description;
 
   const errors = validationResult(req);
@@ -156,8 +157,8 @@ exports.postEditProduct = (req, res, next) => {
       product.price = updatedPrice;
       product.description = updatedDesc;
       if (image) {
-        fileHelper.deleteFile(product.imageUrl);
-        product.imageUrl = imageUrl;
+        // fileHelper.deleteFile(product.imageUrl);
+        product.imageUrl = updatedImageUrl;
       }
       return product.save().then(result => {
         res.redirect('/admin/products');
