@@ -4,7 +4,7 @@
   "description": "e-shop with server side rendering and sessions, payments not included",
   "main": "app.js",
   "engines": {
-    "node": "12.18.0"
+    "node": "^12.18.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
